@@ -30,8 +30,8 @@ def SpeakText(command):
 app = Flask(__name__)
 
 
-@app.route("/")
 def index():
+    
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -52,5 +52,10 @@ def index():
         SpeakText(agent_response['output']['text'])
         return render_template("index.html", text=(agent_response['output']['text']))
 
-
+    
+@app.route("/")
+while True:
+    index()
+    
+    
 app.run(host="0.0.0.0", port=80)
